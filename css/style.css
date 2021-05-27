@@ -1,0 +1,159 @@
+:root {
+  --font: rgba(14, 14, 14);
+  --bg-color: linear-gradient(
+    30deg,
+    rgb(120, 122, 124) 0%,
+    rgb(196, 196, 196) 100%,
+    rgba(191, 191, 191, 1) 100%
+  );
+  --header-color: linear-gradient(
+    30deg,
+    rgba(108, 122, 137, 1) 0%,
+    rgb(117, 119, 119) 100%,
+    rgba(191, 191, 191, 1) 100%
+  );
+  --footer-color: linear-gradient(
+    30deg,
+    rgba(108, 122, 137, 1) 0%,
+    rgba(46, 49, 49, 1) 100%,
+    rgba(191, 191, 191, 1) 100%
+  );
+  --grid-border: 1px solid rgba(14, 14, 14);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  color: var(--font);
+  background: var(--bg-color);
+  min-height: 100vh;
+}
+
+/* Header Styling */
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  background: var(--header-color);
+  border-bottom: 1px solid rgba(0, 0, 0);
+}
+
+/* Control Panel Styling */
+
+nav {
+  min-height: 2rem;
+  background: whitesmoke;
+}
+
+/* Main + Wrapper Styling */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  flex: 1;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 20rem;
+  min-width: 20rem;
+  align-self: center;
+}
+
+/* Gameboard Styling */
+
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: whitesmoke;
+  grid-auto-rows: minmax(6rem, auto);
+}
+
+.top-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: var(--grid-border);
+  border-bottom: var(--grid-border);
+}
+
+.top-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: var(--grid-border);
+  border-right: var(--grid-border);
+  border-bottom: var(--grid-border);
+}
+
+.top-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: var(--grid-border);
+  border-bottom: var(--grid-border);
+}
+
+.center-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: var(--grid-border);
+  border-right: var(--grid-border);
+  border-bottom: var(--grid-border);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--grid-border);
+}
+
+.center-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: var(--grid-border);
+  border-left: var(--grid-border);
+  border-bottom: var(--grid-border);
+}
+
+.bottom-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: var(--grid-border);
+  border-top: var(--grid-border);
+}
+
+.bottom-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: var(--grid-border);
+  border-right: var(--grid-border);
+  border-top: var(--grid-border);
+}
+
+.bottom-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: var(--grid-border);
+  border-top: var(--grid-border);
+}
+
+/* Footer Styling */
+
+footer {
+  display: flex;
+  justify-content: center;
+  background: var(--footer-color);
+  border-top: 1px solid var(--border-color);
+}
