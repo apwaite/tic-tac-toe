@@ -1,32 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@900&display=swap");
+
 :root {
-  --font: rgba(14, 14, 14);
-  --bg-color: linear-gradient(
-    30deg,
-    rgb(120, 122, 124) 0%,
-    rgb(196, 196, 196) 100%,
-    rgba(191, 191, 191, 1) 100%
-  );
-  --header-color: linear-gradient(
-    30deg,
-    rgba(108, 122, 137, 1) 0%,
-    rgb(117, 119, 119) 100%,
-    rgba(191, 191, 191, 1) 100%
-  );
-  --footer-color: linear-gradient(
-    30deg,
-    rgba(108, 122, 137, 1) 0%,
-    rgba(46, 49, 49, 1) 100%,
-    rgba(191, 191, 191, 1) 100%
-  );
-  --grid-border: 1px solid rgba(14, 14, 14);
+  --font-primary: #f5f5f5;
+  --font-secondary: #424242;
+  --bg-color: #f5f5f5;
+  --header-color: #212121;
+  --nav-color: #212121;
+  --footer-color: #212121;
+  --grid-border: 1px solid rgb(14, 14, 14);
+  --sect-border: 2px solid rgb(14, 14, 14);
 }
 
 body {
   display: flex;
   flex-direction: column;
-  font-family: "Roboto", sans-serif;
-  color: var(--font);
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: var(--font-primary);
   background: var(--bg-color);
+  font-size: 1rem;
   min-height: 100vh;
 }
 
@@ -38,14 +30,53 @@ header {
   align-items: center;
   height: 5rem;
   background: var(--header-color);
-  border-bottom: 1px solid rgba(0, 0, 0);
+  border-bottom: var(--sect-border);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  -webkit-text-fill-color: rgb(
+    245,
+    245,
+    245
+  ); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: var(--nav-color);
 }
 
 /* Control Panel Styling */
 
 nav {
-  min-height: 2rem;
-  background: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background: var(--nav-color);
+  border-bottom: var(--sect-border);
+}
+
+/* nav button {
+  font-size: 0.8rem;
+} */
+
+p {
+  font-size: 1.1rem;
+}
+
+.player {
+  text-decoration: underline;
+}
+
+.computer {
+  text-decoration: none;
 }
 
 /* Main + Wrapper Styling */
@@ -53,13 +84,23 @@ nav {
 .main {
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
   flex: 1;
+  margin-top: 5rem;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: var(--nav-color);
+  border-bottom: var(--sect-border);
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
+  max-height: 20rem;
+  min-height: 20rem;
   max-width: 20rem;
   min-width: 20rem;
   align-self: center;
@@ -69,12 +110,19 @@ nav {
 
 .gameboard {
   display: grid;
+  color: var(--font-secondary);
+  font-size: 2rem;
   grid-template-columns: repeat(3, 1fr);
-  background: whitesmoke;
+  background: rgba(245, 245, 245);
   grid-auto-rows: minmax(6rem, auto);
+  /* border: var(--grid-border); */
 }
 
-.top-left {
+.cell:hover {
+  box-shadow: 0 0 0.25rem 0.25rem rgb(201, 226, 255);
+}
+
+.cell-0 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +130,7 @@ nav {
   border-bottom: var(--grid-border);
 }
 
-.top-center {
+.cell-1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +139,7 @@ nav {
   border-bottom: var(--grid-border);
 }
 
-.top-right {
+.cell-2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +147,7 @@ nav {
   border-bottom: var(--grid-border);
 }
 
-.center-left {
+.cell-3 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,14 +156,14 @@ nav {
   border-bottom: var(--grid-border);
 }
 
-.center {
+.cell-4 {
   display: flex;
   justify-content: center;
   align-items: center;
   border: var(--grid-border);
 }
 
-.center-right {
+.cell-5 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +172,7 @@ nav {
   border-bottom: var(--grid-border);
 }
 
-.bottom-left {
+.cell-6 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,7 +180,7 @@ nav {
   border-top: var(--grid-border);
 }
 
-.bottom-center {
+.cell-7 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,7 +189,7 @@ nav {
   border-top: var(--grid-border);
 }
 
-.bottom-right {
+.cell-8 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,5 +203,7 @@ footer {
   display: flex;
   justify-content: center;
   background: var(--footer-color);
-  border-top: 1px solid var(--border-color);
+  border-top: var(--sect-border);
+  font-size: 0.75rem;
+  padding: 0.25rem;
 }
