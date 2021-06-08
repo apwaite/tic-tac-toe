@@ -1,40 +1,65 @@
-const Gameboard = (() => {
+const gameBoard = (() => {
   "use strict";
 
-  let _privateProperty = "This is working interesting";
-  let gameBoard = [["o"], ["x"], [""], [""], ["x"], ["o"], [""], ["x"], [""]];
+  let _currentPlayer = "X";
+  let gameboard = ["X", "X", "O", "X", "X", "X", "O", "O", "O"];
 
-  function _privateMethod() {
-    console.log(_privateProperty);
+  // 0,1,2,
+  // 3,4,5,
+  // 6,7,8
+
+  // create a gameboard
+
+  function _logInfo() {
+    console.log(gameboard);
+    console.log(_currentPlayer);
   }
 
-  function publicMethod() {
-    _privateMethod();
+  function reportInfo() {
+    _logInfo();
+  }
+
+  // render the gameboard using the gameboard array
+  // todo: do this wihout a standard for loop later
+  function renderGameBoard(array) {
+    for (let i = 0; i < array.length; i++) {
+      let element = document.querySelector(".gameboard");
+      let newElement = document.createElement("section");
+      newElement.classList.add(`cell`, `cell-${[i]}`);
+      if (array[i].includes("X") || array[i].includes("O")) {
+        newElement.textContent = array[i];
+      }
+      element.appendChild(newElement);
+    }
   }
 
   return {
-    publicMethod: publicMethod,
-    gameBoard: gameBoard,
+    renderGameBoard: renderGameBoard,
+    reportInfo: reportInfo,
+    gameboard: gameboard,
   };
 })();
 
 const displayController = (() => {
   "use strict";
 
+  gameBoard.renderGameBoard(gameBoard.gameboard);
   return {};
 })();
 
 const Player = (name) => {
-  const sayName = () => console.log(`Your move, ${name}!`);
-  return { sayName };
+  const instructions = document.querySelector(".instructions");
+
+  //todo: create a function that
+
+  const showPlayer = () => (instructions.textContent = `Your move, ${name}!`);
+  return { showPlayer };
 };
 
 const playerOne = Player("X");
 
 const playerTwo = Player("O");
 
-playerOne.sayName();
-playerTwo.sayName();
-GameBoard.publicMethod();
-console.log(Gameboard.gameBoard);
-console.log(Gameboard._privateProperty);
+playerOne.showPlayer();
+playerTwo.showPlayer();
+gameBoard.reportInfo();
