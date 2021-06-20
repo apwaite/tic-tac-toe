@@ -18,17 +18,28 @@ const gameBoard = (() => {
   }
 
   // render the gameboard using the gameboard array
-  // todo: do this wihout a standard for loop later
   function renderGameBoard(array) {
-    for (let i = 0; i < array.length; i++) {
+    // for (let i = 0; i < array.length; i++) {
+    //   let element = document.querySelector(".gameboard");
+    //   let newElement = document.createElement("section");
+    //   newElement.classList.add(`cell`, `cell-${[i]}`, `${[i]}`);
+    //   newElement.textContent = `${el}`;
+    //   // if (array[i].includes("X") || array[i].includes("O")) {
+    //   //   newElement.textContent = array[i];
+    //   // }
+    //   element.appendChild(newElement);
+    // }
+
+    array.forEach((el, i) => {
       let element = document.querySelector(".gameboard");
       let newElement = document.createElement("section");
-      newElement.classList.add(`cell`, `cell-${[i]}`, `${[i]}`);
-      if (array[i].includes("X") || array[i].includes("O")) {
-        newElement.textContent = array[i];
-      }
+      newElement.classList.add(`cell`, `cell-${i}`, `${i}`);
+      newElement.textContent = `${el}`;
+      // if (array[i].includes("X") || array[i].includes("O")) {
+      //   newElement.textContent = array[i];
+      // }
       element.appendChild(newElement);
-    }
+    });
   }
 
   return {
