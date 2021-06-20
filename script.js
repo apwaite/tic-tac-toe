@@ -93,9 +93,9 @@ const displayController = (() => {
       ) {
         console.log("Error, choose another area");
       }
-      if (currentPlayer === "X") {
+      if (currentPlayer === "X" && event.target.textContent === "X") {
         currentPlayer = "O";
-      } else if (currentPlayer === "O") {
+      } else if (currentPlayer === "O" && event.target.textContent === "O") {
         currentPlayer = "X";
       }
       showPlayer();
