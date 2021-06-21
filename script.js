@@ -1,3 +1,8 @@
+const Player = (mark) => {
+  const showMark = () => mark;
+  return { showMark };
+};
+
 const gameBoard = (() => {
   "use strict";
 
@@ -43,30 +48,22 @@ const gameBoard = (() => {
   }
 
   return {
-    renderGameBoard: renderGameBoard,
-    reportInfo: reportInfo,
-    gameboard: gameboard,
+    renderGameBoard,
+    reportInfo,
+    gameboard,
   };
 })();
 
 const displayController = (() => {
   "use strict";
 
+  const playerOne = Player("X");
+
+  const playerTwo = Player("O");
+
   let currentPlayer = "X";
 
   const instructions = document.querySelector(".instructions");
-
-  function showPlayer() {
-    const playerData = document.querySelectorAll(".game-status > p");
-    if (currentPlayer === "X") {
-      // todo: add text-decoration underline
-      // playerData[0].textContent = "Player (X)";
-    } else if (currentPlayer === "O") {
-      // todo: add text-decoration underline
-      // playerData[1].textContent = "Player (O)";
-    }
-    instructions.textContent = `Your move, ${currentPlayer}!`;
-  }
 
   function _logInfo() {
     console.log(currentPlayer);
@@ -76,51 +73,63 @@ const displayController = (() => {
     _logInfo();
   }
 
-  gameBoard.renderGameBoard(gameBoard.gameboard);
-
   // todo: logic that determines whether a spot can be marked by a player
 
-  document.querySelectorAll(".cell").forEach((item) => {
-    item.addEventListener("click", (event) => {
-      let selected = event.target.classList[2];
-      if (gameBoard.gameboard[`${selected}`] === "") {
-        event.target.textContent = `${currentPlayer}`;
-        gameBoard.gameboard[`${selected}`] = `${currentPlayer}`;
-        console.log(selected);
-      } else if (
-        event.target.textContent === "O" ||
-        event.target.textContent === "X"
-      ) {
-        console.log("Error, choose another area");
-      }
-      if (currentPlayer === "X" && event.target.textContent === "X") {
-        currentPlayer = "O";
-      } else if (currentPlayer === "O" && event.target.textContent === "O") {
-        currentPlayer = "X";
-      }
-      showPlayer();
-      console.log("Checking for win condition....");
-      console.log(currentPlayer);
+  function markPos() {
+    document.querySelectorAll(".cell").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        let selected = e.target.classList[2];
+        if (gameBoard.gameboard[`${selected}`] === "") {
+          e.target.textContent = `${currentPlayer}`;
+          gameBoard.gameboard[`${selected}`] = `${currentPlayer}`;
+          console.log(selected);
+        } else if (
+          e.target.textContent === playerTwo.showMark() ||
+          e.target.textContent === playerOne.showMark()
+        ) {
+          console.log("Error, choose another area");
+        }
+        if (
+          currentPlayer === playerOne.showMark() &&
+          e.target.textContent === playerOne.showMark()
+        ) {
+          currentPlayer = playerTwo.showMark();
+        } else if (
+          currentPlayer === playerTwo.showMark() &&
+          e.target.textContent === playerTwo.showMark()
+        ) {
+          currentPlayer = playerOne.showMark();
+        }
+        showPlayer();
+        console.log("Checking for win condition....");
+        console.log(currentPlayer);
+      });
     });
-  });
+  }
+
+  function showPlayer() {
+    const playerData = document.querySelectorAll(".game-status > p");
+    if (currentPlayer === playerOne.showMark()) {
+      // todo: add text-decoration underline
+      // playerData[0].textContent = "Player (X)";
+    } else if (currentPlayer === playerTwo.showMark()) {
+      // todo: add text-decoration underline
+      // playerData[1].textContent = "Player (O)";
+    }
+    instructions.textContent = `Your move, ${currentPlayer}!`;
+  }
+
+  gameBoard.renderGameBoard(gameBoard.gameboard);
+
+  instructions.textContent = `Your move, ${playerOne.showMark()}!`;
+
+  markPos();
 
   return {
-    reportInfo: reportInfo,
-    currentPlayer: currentPlayer,
-    showPlayer: showPlayer,
+    reportInfo,
+    currentPlayer,
   };
 })();
 
-const Player = (name) => {
-  const showPlayer = () => displayController.showPlayer(name);
-  return { showPlayer };
-};
-
-const playerOne = Player("X");
-
-const playerTwo = Player("O");
-
-playerOne.showPlayer();
-playerTwo.showPlayer();
 gameBoard.reportInfo();
 displayController.reportInfo();
