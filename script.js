@@ -63,6 +63,8 @@ const displayController = (() => {
 
   let currentPlayer = "X";
 
+  let round = 1;
+
   const instructions = document.querySelector(".instructions");
 
   function _logInfo() {
@@ -73,7 +75,7 @@ const displayController = (() => {
     _logInfo();
   }
 
-  // todo: logic that determines whether a spot can be marked by a player
+  // TODO: logic that determines whether a spot can be marked by a player
 
   function markPos() {
     document.querySelectorAll(".cell").forEach((item) => {
@@ -101,6 +103,7 @@ const displayController = (() => {
           currentPlayer = playerOne.showMark();
         }
         showPlayer();
+        checkForWinner();
         console.log("Checking for win condition....");
         console.log(currentPlayer);
       });
@@ -110,13 +113,32 @@ const displayController = (() => {
   function showPlayer() {
     const playerData = document.querySelectorAll(".game-status > p");
     if (currentPlayer === playerOne.showMark()) {
-      // todo: add text-decoration underline
+      // TODO: add text-decoration underline
       // playerData[0].textContent = "Player (X)";
     } else if (currentPlayer === playerTwo.showMark()) {
-      // todo: add text-decoration underline
+      // TODO: add text-decoration underline
       // playerData[1].textContent = "Player (O)";
     }
     instructions.textContent = `Your move, ${currentPlayer}!`;
+  }
+
+  function checkForWinner() {
+    // TODO: add logic to check for a draw/winner
+    // first conditional should check whether 9 rounds have played - if this happens the game is automatically a draw
+    if (round === 9) {
+      instructions.textContent = `It's a draw!`;
+      console.log(round);
+    }
+    console.log(round);
+    round++;
+  }
+
+  function checkForDraw() {
+    if (round >= 9) {
+      instructions.textContent = `It's a draw!`;
+    }
+    console.log(round);
+    round++;
   }
 
   gameBoard.renderGameBoard(gameBoard.gameboard);
