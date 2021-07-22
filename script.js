@@ -58,20 +58,19 @@ const displayController = (() => {
   "use strict";
 
   const playerOne = Player("X");
-
   const playerTwo = Player("O");
 
   let currentPlayer = "X";
-
   let round = 1;
-
-  let winner = false;
+  let isDraw = false;
+  let isWinner = false;
 
   const instructions = document.querySelector(".instructions");
 
   function _logInfo() {
     console.log(currentPlayer);
-    console.log(winner);
+    console.log(isDraw);
+    console.log(`The round number is ${round}`);
   }
 
   function reportInfo() {
@@ -84,14 +83,13 @@ const displayController = (() => {
     document.querySelectorAll(".cell").forEach((item) => {
       item.addEventListener("click", (e) => {
         let selected = e.target.classList[2];
-        if (winner === true) {
-          return checkForWinner();
-        } else if (gameBoard.gameboard[`${selected}`] === "") {
+        if (gameBoard.gameboard[`${selected}`] === "") {
           e.target.textContent = `${currentPlayer}`;
           gameBoard.gameboard[`${selected}`] = `${currentPlayer}`;
-          checkForWinner();
+          checkForDraw();
+          // checkForWinner();
           console.log(selected);
-          console.log(winner);
+          console.log(isDraw);
         } else if (
           e.target.textContent === playerTwo.showMark() ||
           e.target.textContent === playerOne.showMark()
@@ -109,17 +107,26 @@ const displayController = (() => {
         ) {
           currentPlayer = playerOne.showMark();
         }
-        showPlayer();
+        showInfo();
         console.log(currentPlayer);
       });
     });
   }
+  function showInfo() {
+    if (isDraw === true && isWinner === false) {
+      instructions.textContent = `It's a draw!`;
+      // TODO: if winner is true display winner
+    } else if (isDraw === false && isWinner === true) {
+      // NOTE: shows next player instead of current winner
+      instructions.textContent = `Player ${currentPlayer} wins!`;
+    } else {
+      showPlayer();
+    }
+  }
 
   function showPlayer() {
     const playerData = document.querySelectorAll(".game-status > p");
-    if (winner === true) {
-      instructions.textContent = `It's a draw!`;
-    } else if (currentPlayer === playerOne.showMark()) {
+    if (currentPlayer === playerOne.showMark()) {
       // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
       // playerData[0].textContent = "Player (X)";
@@ -130,23 +137,22 @@ const displayController = (() => {
     }
   }
 
-  function checkForWinner() {
-    // TODO: add logic to check for a draw/winner
+  const checkForDraw = () => {
+    // TODO: add logic to check for a draw
     // first conditional should check whether 9 rounds have played - if this happens the game is automatically a draw
     if (round === 9) {
-      winner = true;
+      return (isDraw = true);
     }
-    console.log(round);
-    round++;
-  }
+    return round++;
+  };
 
-  function checkForDraw() {
-    if (round >= 9) {
-      instructions.textContent = `It's a draw!`;
-    }
-    console.log(round);
-    round++;
-  }
+  // function checkForWinner() {
+  //   // TODO: check array for win conditions
+  //   if (winner === true) {
+  //   }
+  //   console.log(round);
+  //   round++;
+  // }
 
   gameBoard.renderGameBoard(gameBoard.gameboard);
 
@@ -157,7 +163,7 @@ const displayController = (() => {
   return {
     reportInfo,
     currentPlayer,
-    winner,
+    isWinner,
   };
 })();
 
