@@ -146,13 +146,23 @@ const displayController = (() => {
     return round++;
   };
 
-  // function checkForWinner() {
-  //   // TODO: check array for win conditions
-  //   if (winner === true) {
-  //   }
-  //   console.log(round);
-  //   round++;
-  // }
+  const checkForWinner = () => {
+    // TODO: check array for win conditions
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    if (winner === true) {
+    }
+    console.log(round);
+    round++;
+  };
 
   gameBoard.renderGameBoard(gameBoard.gameboard);
 
