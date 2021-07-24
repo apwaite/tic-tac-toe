@@ -69,6 +69,8 @@ const displayController = (() => {
 
   const instructions = document.querySelector(".instructions");
 
+  const gameOver = document.querySelector(".game-over");
+
   function _logInfo() {
     console.log(currentPlayer);
     console.log(isDraw);
@@ -123,6 +125,8 @@ const displayController = (() => {
       // NOTE: shows next player instead of current winner
       instructions.textContent = `Player ${winningPlayer} wins!`;
       // TODO: create a function that overlay over the gameboard
+      gameOver.style.display = "flex";
+      gameOver.textContent = `Game Over! Player ${winningPlayer} Wins!`;
     } else {
       showPlayer();
     }
