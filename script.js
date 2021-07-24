@@ -122,6 +122,7 @@ const displayController = (() => {
     } else if (isDraw === false && isWinner === true) {
       // NOTE: shows next player instead of current winner
       instructions.textContent = `Player ${winningPlayer} wins!`;
+      // TODO: create a function that overlay over the gameboard
     } else {
       showPlayer();
     }
