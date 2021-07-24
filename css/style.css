@@ -96,6 +96,34 @@ p {
   border-bottom: var(--sect-border);
 }
 
+.game-over {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  width: 20rem;
+  height: 20rem;
+  position: absolute;
+  align-items: center;
+  text-align: center;
+  z-index: 999;
+  color: #d9534f;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--font-secondary);
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: "Roboto", sans-serif;
+}
+
+.blur-background {
+  display: none;
+  width: 20rem;
+  height: 20rem;
+  align-items: center;
+  position: absolute;
+  background-color: none;
+  filter: blur(4px);
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
