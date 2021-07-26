@@ -124,9 +124,14 @@ const displayController = (() => {
     } else if (isDraw === false && isWinner === true) {
       // NOTE: shows next player instead of current winner
       instructions.textContent = `Player ${winningPlayer} wins!`;
-      // TODO: create a function that overlay over the gameboard
+      // TODO: create a function that adds an overlay with a button over the gameboard
       gameOver.style.display = "flex";
       gameOver.textContent = `Game Over! Player ${winningPlayer} Wins!`;
+      const newBtn = document.createElement("button");
+      const newBtnText = document.createTextNode("Try Again?");
+      newBtn.appendChild(newBtnText);
+      gameOver.appendChild(newBtn);
+      newBtn.className = "btn try-again";
     } else {
       showPlayer();
     }
