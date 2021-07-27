@@ -98,7 +98,7 @@ p {
 
 .game-over {
   display: none;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   width: 20rem;
   height: 20rem;
@@ -112,6 +112,9 @@ p {
   font-size: 2rem;
   font-weight: 900;
   font-family: "Roboto", sans-serif;
+}
+.btn {
+  background-color: green;
 }
 
 .blur-background {
