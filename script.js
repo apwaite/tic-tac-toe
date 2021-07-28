@@ -117,6 +117,18 @@ const displayController = (() => {
       });
     });
   }
+
+  // TODO: reset game back to default state
+  // function resetGameboard() {
+  //   gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
+  //   currentPlayer = "X";
+  //   round = 1;
+  //   isDraw = false;
+  //   isWinner = false;
+  //   gameOver.style.display = "none";
+  //   gameBoard.renderGameBoard(gameBoard.gameboard);
+  // }
+
   function showInfo() {
     if (isDraw === true && isWinner === false) {
       instructions.textContent = `It's a draw!`;
@@ -132,6 +144,10 @@ const displayController = (() => {
       newBtn.appendChild(newBtnText);
       gameOver.appendChild(newBtn);
       newBtn.className = "btn try-again";
+      // TODO: attach an event listener to the try again button that resets the gameboard array/display
+      const tryAgain = document.querySelector(".try-again");
+
+      tryAgain.addEventListener("click", resetGameboard());
     } else {
       showPlayer();
     }
