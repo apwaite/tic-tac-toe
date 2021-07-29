@@ -68,7 +68,6 @@ const displayController = (() => {
   let winningPlayer;
 
   const instructions = document.querySelector(".instructions");
-
   const gameOver = document.querySelector(".game-over");
 
   function _logInfo() {
@@ -119,15 +118,17 @@ const displayController = (() => {
   }
 
   // TODO: reset game back to default state
-  // function resetGameboard() {
-  //   gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
-  //   currentPlayer = "X";
-  //   round = 1;
-  //   isDraw = false;
-  //   isWinner = false;
-  //   gameOver.style.display = "none";
-  //   gameBoard.renderGameBoard(gameBoard.gameboard);
-  // }
+  function resetGameboard() {
+    gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
+    round = 1;
+    isDraw = false;
+    isWinner = false;
+    currentPlayer = "X";
+    showPlayer("X");
+    gameOver.style.display = "none";
+    document.querySelectorAll(".cell").forEach((el) => el.remove());
+    gameBoard.renderGameBoard(gameBoard.gameboard);
+  }
 
   function showInfo() {
     if (isDraw === true && isWinner === false) {
@@ -147,7 +148,9 @@ const displayController = (() => {
       // TODO: attach an event listener to the try again button that resets the gameboard array/display
       const tryAgain = document.querySelector(".try-again");
 
-      tryAgain.addEventListener("click", resetGameboard());
+      tryAgain.addEventListener("click", () => {
+        resetGameboard();
+      });
     } else {
       showPlayer();
     }
