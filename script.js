@@ -128,6 +128,7 @@ const displayController = (() => {
     gameOver.style.display = "none";
     document.querySelectorAll(".cell").forEach((el) => el.remove());
     gameBoard.renderGameBoard(gameBoard.gameboard);
+    markPos();
   }
 
   function showInfo() {
