@@ -62,7 +62,6 @@ const displayController = (() => {
 
   let currentPlayer = "X";
   let round = 1;
-  // let gameActive = true;
   let isDraw = false;
   let isWinner = false;
   let winningPlayer;
@@ -131,27 +130,33 @@ const displayController = (() => {
     markPos();
   }
 
+  function addOverlay() {
+    gameOver.style.display = "flex";
+    let result = isWinner ? `Player ${winningPlayer} Wins!` : `It's a Draw!`;
+    gameOver.textContent = `Game Over! ${result}`;
+    const newBtn = document.createElement("button");
+    const newBtnText = document.createTextNode("Try Again?");
+    newBtn.appendChild(newBtnText);
+    gameOver.appendChild(newBtn);
+    newBtn.className = "btn try-again";
+    // TODO: attach an event listener to the try again button that resets the gameboard array/display
+    const tryAgain = document.querySelector(".try-again");
+
+    tryAgain.addEventListener("click", () => {
+      resetGameboard();
+    });
+  }
+
   function showInfo() {
     if (isDraw === true && isWinner === false) {
       instructions.textContent = `It's a draw!`;
+      addOverlay();
       // TODO: if winner is true display winner
     } else if (isDraw === false && isWinner === true) {
       // NOTE: shows next player instead of current winner
       instructions.textContent = `Player ${winningPlayer} wins!`;
       // TODO: create a function that adds an overlay with a button over the gameboard
-      gameOver.style.display = "flex";
-      gameOver.textContent = `Game Over! Player ${winningPlayer} Wins!`;
-      const newBtn = document.createElement("button");
-      const newBtnText = document.createTextNode("Try Again?");
-      newBtn.appendChild(newBtnText);
-      gameOver.appendChild(newBtn);
-      newBtn.className = "btn try-again";
-      // TODO: attach an event listener to the try again button that resets the gameboard array/display
-      const tryAgain = document.querySelector(".try-again");
-
-      tryAgain.addEventListener("click", () => {
-        resetGameboard();
-      });
+      addOverlay();
     } else {
       showPlayer();
     }
@@ -211,7 +216,6 @@ const displayController = (() => {
       }
       // check whether all 3 indexes match
       if (index0 === index1 && index1 === index2) {
-        // gameActive = false;
         isWinner = true;
         winningPlayer = currentPlayer;
         return;
