@@ -14,13 +14,13 @@ const gameBoard = (() => {
 
   // create a gameboard
 
-  function _logInfo() {
-    console.log(gameboard);
-  }
+  // function _logInfo() {
+  //   console.log(gameboard);
+  // }
 
-  function reportInfo() {
-    _logInfo();
-  }
+  // function reportInfo() {
+  //   _logInfo();
+  // }
 
   // render the gameboard using the gameboard array
   function renderGameBoard(array) {
@@ -49,7 +49,7 @@ const gameBoard = (() => {
 
   return {
     renderGameBoard,
-    reportInfo,
+    // reportInfo,
     gameboard,
   };
 })();
@@ -74,15 +74,15 @@ const displayController = (() => {
     resetGameboard();
   });
 
-  function _logInfo() {
-    console.log(currentPlayer);
-    console.log(isDraw);
-    console.log(`The round number is ${round}`);
-  }
+  // function _logInfo() {
+  //   console.log(currentPlayer);
+  //   console.log(isDraw);
+  //   console.log(`The round number is ${round}`);
+  // }
 
-  function reportInfo() {
-    _logInfo();
-  }
+  // function reportInfo() {
+  //   _logInfo();
+  // }
 
   // TODO: logic that determines whether a spot can be marked by a player
 
@@ -95,9 +95,9 @@ const displayController = (() => {
           gameBoard.gameboard[`${selected}`] = `${currentPlayer}`;
           checkForDraw();
           checkForWinner();
-          console.log(selected);
-          console.log(isDraw);
-          console.log(isWinner);
+          // console.log(selected);
+          // console.log(isDraw);
+          // console.log(isWinner);
         } else if (
           e.target.textContent === playerTwo.showMark() ||
           e.target.textContent === playerOne.showMark()
@@ -116,7 +116,7 @@ const displayController = (() => {
           currentPlayer = playerOne.showMark();
         }
         showInfo();
-        console.log(currentPlayer);
+        // console.log(currentPlayer);
       });
     });
   }
@@ -174,11 +174,13 @@ const displayController = (() => {
     if (currentPlayer === playerOne.showMark()) {
       // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
-      // playerData[0].textContent = "Player (X)";
+      playerData[0].classList.toggle("selected");
+      playerData[1].classList.toggle("selected");
     } else if (currentPlayer === playerTwo.showMark()) {
       // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
-      // playerData[1].textContent = "Player (O)";
+      playerData[0].classList.toggle("selected");
+      playerData[1].classList.toggle("selected");
     }
   }
 
@@ -214,8 +216,8 @@ const displayController = (() => {
       let index1 = gameBoard.gameboard[winCondition[1]];
       let index2 = gameBoard.gameboard[winCondition[2]];
 
-      console.log(winCondition);
-      console.table(`1: ${index0}, 2: ${index1}, 3: ${index2}`);
+      // console.log(winCondition);
+      // console.table(`1: ${index0}, 2: ${index1}, 3: ${index2}`);
 
       // if values are blank do nothing
       if (index0 === "" || index1 === "" || index2 === "") {
@@ -237,11 +239,11 @@ const displayController = (() => {
   markPos();
 
   return {
-    reportInfo,
-    currentPlayer,
-    isWinner,
+    // reportInfo,
+    // currentPlayer,
+    // isWinner,
   };
 })();
 
-gameBoard.reportInfo();
-displayController.reportInfo();
+// gameBoard.reportInfo();
+// displayController.reportInfo();
