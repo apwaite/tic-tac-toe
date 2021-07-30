@@ -37,7 +37,7 @@ const gameBoard = (() => {
 
     array.forEach((el, i) => {
       let element = document.querySelector(".gameboard");
-      let newElement = document.createElement("section");
+      let newElement = document.createElement("div");
       newElement.classList.add(`cell`, `cell-${i}`, `${i}`);
       newElement.textContent = `${el}`;
       // if (array[i].includes("X") || array[i].includes("O")) {
@@ -68,6 +68,11 @@ const displayController = (() => {
 
   const instructions = document.querySelector(".instructions");
   const gameOver = document.querySelector(".game-over");
+  const newGame = document.querySelector(".new-game");
+
+  newGame.addEventListener("click", () => {
+    resetGameboard();
+  });
 
   function _logInfo() {
     console.log(currentPlayer);
@@ -141,7 +146,6 @@ const displayController = (() => {
     newBtn.className = "btn try-again";
     // TODO: attach an event listener to the try again button that resets the gameboard array/display
     const tryAgain = document.querySelector(".try-again");
-
     tryAgain.addEventListener("click", () => {
       resetGameboard();
     });
@@ -156,6 +160,9 @@ const displayController = (() => {
       // NOTE: shows next player instead of current winner
       instructions.textContent = `Player ${winningPlayer} wins!`;
       // TODO: create a function that adds an overlay with a button over the gameboard
+      addOverlay();
+    } else if (isDraw === true && isWinner === true) {
+      // TODO: add logic so that if both are true winner is announced
       addOverlay();
     } else {
       showPlayer();
