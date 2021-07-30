@@ -12,21 +12,17 @@
     <header>
       <h1>TIC TAC TOE</h1>
     </header>
-    <section class="message"><h2>Turn:</h2></section>
+    <div class="message"><h2>Turn:</h2></div>
     <nav class="game-status">
       <p class="player"><strong>Player (X)</strong></p>
       <p class="computer"><strong>Player (O)</strong></p>
     </nav>
-    <section class="instructions">Hi</section>
-    <section class="main">
+    <div class="instructions">Hi</div>
+    <div class="main">
       <!-- TODO: Add an overlay that encompasses the gameboard - default set to hidden -->
-      <section class="wrapper">
-        <section class="gameboard">
-          <section class="game-over">
-            <!-- <button class="btn try-again">Test</button> -->
-          </section>
-          <!-- <div class="blur-background"></div> -->
-
+      <div class="wrapper">
+        <div class="gameboard">
+          <div class="game-over"></div>
           <!--
             Grid Layout
             [0][1][2]
@@ -44,9 +40,10 @@
           <div class="cell cell-7 7"></div>
           <div class="cell cell-8 8"></div>
           -->
-        </section>
-      </section>
-    </section>
+        </div>
+        <button class="btn new-game">New Game</button>
+      </div>
+    </div>
     <footer><strong>Made with &#10084;&#65039; by Andrew</strong></footer>
     <script src="script.js"></script>
   </body>
