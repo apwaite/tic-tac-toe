@@ -71,7 +71,7 @@ p {
   font-size: 1.1rem;
 }
 
-.player {
+.selected {
   text-decoration: underline;
 }
 
@@ -80,6 +80,16 @@ p {
 }
 
 /* Main + Wrapper Styling */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 20rem;
+  min-height: 20rem;
+  max-width: 20rem;
+  min-width: 20rem;
+  align-self: center;
+}
 
 .main {
   display: flex;
@@ -114,28 +124,45 @@ p {
   font-family: "Roboto", sans-serif;
 }
 .btn {
-  background-color: green;
+  background-color: var(--bg-color);
+  padding: 0.5rem;
+  font-size: 1rem;
+  -webkit-text-stroke-width: 0;
+  font-weight: 100;
+  font-size: 1rem;
+  width: max-content;
 }
 
-.blur-background {
+.try-again {
+  margin-top: 1rem;
+  font-weight: 100;
+  font-size: 1rem;
+}
+
+.new-game {
+  display: flex;
+  align-self: center;
+  margin-top: 5rem;
+  font-weight: 900;
+  font-size: 1rem;
+  align-content: center;
+}
+
+/* .blur-background {
   display: none;
   width: 20rem;
   height: 20rem;
   align-items: center;
   position: absolute;
   background-color: none;
-  filter: blur(4px);
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  max-height: 20rem;
-  min-height: 20rem;
-  max-width: 20rem;
-  min-width: 20rem;
-  align-self: center;
-}
+  background-color: green;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  z-index: 1;
+} */
 
 /* Gameboard Styling */
 
@@ -147,6 +174,27 @@ p {
   background: rgba(245, 245, 245);
   grid-auto-rows: minmax(6rem, auto);
   /* border: var(--grid-border); */
+}
+
+.game-over:after {
+  display: flex;
+  content: "";
+  background: green;
+  width: 20rem;
+  height: 20rem;
+  align-items: center;
+  position: absolute;
+  display: none;
+  width: 20rem;
+  height: 20rem;
+  align-items: center;
+  z-index: -1;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  z-index: 1;
 }
 
 .cell:hover {
