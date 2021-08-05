@@ -69,6 +69,7 @@ const displayController = (() => {
   const instructions = document.querySelector(".instructions");
   const gameOver = document.querySelector(".game-over");
   const newGame = document.querySelector(".new-game");
+  const playerData = document.querySelectorAll(".game-status > p");
 
   newGame.addEventListener("click", () => {
     resetGameboard();
@@ -123,6 +124,7 @@ const displayController = (() => {
 
   // TODO: reset game back to default state
   function resetGameboard() {
+    // TODO: enforce class selected on player x
     gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
     round = 1;
     isDraw = false;
@@ -170,7 +172,6 @@ const displayController = (() => {
   }
 
   function showPlayer() {
-    const playerData = document.querySelectorAll(".game-status > p");
     if (currentPlayer === playerOne.showMark()) {
       // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
