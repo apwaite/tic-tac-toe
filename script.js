@@ -124,17 +124,25 @@ const displayController = (() => {
 
   // TODO: reset game back to default state
   function resetGameboard() {
-    // TODO: enforce class selected on player x
     gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
     round = 1;
     isDraw = false;
     isWinner = false;
     currentPlayer = "X";
     showPlayer("X");
+    resetPlayer();
     gameOver.style.display = "none";
     document.querySelectorAll(".cell").forEach((el) => el.remove());
     gameBoard.renderGameBoard(gameBoard.gameboard);
     markPos();
+  }
+
+  // TODO: enforce class selected on player x
+  function resetPlayer() {
+    if (playerData[1].classList.value === "player-o selected") {
+      playerData[1].classList.toggle("selected");
+      playerData[0].classList.toggle("selected");
+    }
   }
 
   function addOverlay() {
