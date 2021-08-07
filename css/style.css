@@ -112,9 +112,9 @@ p {
   align-items: center;
   text-align: center;
   z-index: 999;
-  color: #d9534f;
+  color: var(--font-secondary);
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: var(--font-secondary);
+  -webkit-text-stroke-color: var(--font-primary);
   font-size: 2rem;
   font-weight: 900;
   font-family: "Roboto", sans-serif;
