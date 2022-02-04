@@ -2,7 +2,7 @@
 
 ## Short Description
 
-A broswer version of the classic Tic Tac Toe game!
+A browser version of the classic Tic Tac Toe game!
 
 ## Instructions
 
