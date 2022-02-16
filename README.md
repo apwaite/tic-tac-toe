@@ -4,7 +4,7 @@
 
 A browser version of the classic Tic Tac Toe game!
 
-[Link to Tic-Tac-Toe Page](https://apwaite.github.io/tic-tac-toe/)
+[Link to Tic Tac Toe Page](https://apwaite.github.io/tic-tac-toe/)
 
 ## Instructions
 
