@@ -19,4 +19,6 @@ This project uses two different patterns:
 
 ## Challenges
 
-The primary goal of this project was to have as little global code as possible. To achieve this I utilised both the factory function pattern and the modern pattern. When I only required one of something I used the module pattern and when I required multiples of something (players) I created them with factories. The first challenge was identifying which objects I needed. I eventually decided on using a Player factory function to create the players, a gameboard object to store and render the gameboard and a displayController to manage and handle the game logic.
+The primary goal of this project was to have as little global code as possible. To achieve this I utilised both the factory function pattern and the modern pattern. When I only required one of something I used the module pattern and when I required multiples of something (players) I created them with factories. The first challenge was identifying which objects I needed. I eventually decided on using a Player factory function to create the players, a gameboard object to store and render the gameboard and a display controller module to manage and handle the game logic.
+
+With this decided, I moved on to creating an array to store the contents of the gameboard.
