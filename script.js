@@ -4,9 +4,9 @@ const Player = (mark) => {
 };
 
 const gameBoard = (() => {
-  "use strict";
+  'use strict';
 
-  let gameboard = ["", "", "", "", "", "", "", "", ""];
+  let gameboard = ['', '', '', '', '', '', '', '', ''];
 
   // 0,1,2,
   // 3,4,5,
@@ -36,8 +36,8 @@ const gameBoard = (() => {
     // }
 
     array.forEach((el, i) => {
-      let element = document.querySelector(".gameboard");
-      let newElement = document.createElement("div");
+      let element = document.querySelector('.gameboard');
+      let newElement = document.createElement('div');
       newElement.classList.add(`cell`, `cell-${i}`, `${i}`);
       newElement.textContent = `${el}`;
       // if (array[i].includes("X") || array[i].includes("O")) {
@@ -55,23 +55,23 @@ const gameBoard = (() => {
 })();
 
 const displayController = (() => {
-  "use strict";
+  'use strict';
 
-  const playerOne = Player("X");
-  const playerTwo = Player("O");
+  const playerOne = Player('X');
+  const playerTwo = Player('O');
 
-  let currentPlayer = "X";
+  let currentPlayer = 'X';
   let round = 1;
   let isDraw = false;
   let isWinner = false;
   let winningPlayer;
 
-  const instructions = document.querySelector(".instructions");
-  const gameOver = document.querySelector(".game-over");
-  const newGame = document.querySelector(".new-game");
-  const playerData = document.querySelectorAll(".game-status > p");
+  const instructions = document.querySelector('.instructions');
+  const gameOver = document.querySelector('.game-over');
+  const newGame = document.querySelector('.new-game');
+  const playerData = document.querySelectorAll('.game-status > p');
 
-  newGame.addEventListener("click", () => {
+  newGame.addEventListener('click', () => {
     resetGameboard();
   });
 
@@ -88,10 +88,10 @@ const displayController = (() => {
   // TODO: logic that determines whether a spot can be marked by a player
 
   function markPos() {
-    document.querySelectorAll(".cell").forEach((item) => {
-      item.addEventListener("click", (e) => {
+    document.querySelectorAll('.cell').forEach((item) => {
+      item.addEventListener('click', (e) => {
         let selected = e.target.classList[2];
-        if (gameBoard.gameboard[`${selected}`] === "") {
+        if (gameBoard.gameboard[`${selected}`] === '') {
           e.target.textContent = `${currentPlayer}`;
           gameBoard.gameboard[`${selected}`] = `${currentPlayer}`;
           checkForDraw();
@@ -103,7 +103,7 @@ const displayController = (() => {
           e.target.textContent === playerTwo.showMark() ||
           e.target.textContent === playerOne.showMark()
         ) {
-          console.log("Error, choose another area");
+          console.log('Error, choose another area');
         }
         if (
           currentPlayer === playerOne.showMark() &&
@@ -124,39 +124,39 @@ const displayController = (() => {
 
   // TODO: reset game back to default state
   function resetGameboard() {
-    gameBoard.gameboard = ["", "", "", "", "", "", "", "", ""];
+    gameBoard.gameboard = ['', '', '', '', '', '', '', '', ''];
     round = 1;
     isDraw = false;
     isWinner = false;
-    currentPlayer = "X";
-    showPlayer("X");
+    currentPlayer = 'X';
+    showPlayer('X');
     resetPlayer();
-    gameOver.style.display = "none";
-    document.querySelectorAll(".cell").forEach((el) => el.remove());
+    gameOver.style.display = 'none';
+    document.querySelectorAll('.cell').forEach((el) => el.remove());
     gameBoard.renderGameBoard(gameBoard.gameboard);
     markPos();
   }
 
   // TODO: enforce class selected on player x
   function resetPlayer() {
-    if (playerData[1].classList.value === "player-o selected") {
-      playerData[1].classList.toggle("selected");
-      playerData[0].classList.toggle("selected");
+    if (playerData[1].classList.value === 'player-o selected') {
+      playerData[1].classList.toggle('selected');
+      playerData[0].classList.toggle('selected');
     }
   }
 
   function addOverlay() {
-    gameOver.style.display = "flex";
+    gameOver.style.display = 'flex';
     let result = isWinner ? `Player ${winningPlayer} Wins!` : `It's a Draw!`;
     gameOver.textContent = `Game Over! ${result}`;
-    const newBtn = document.createElement("button");
-    const newBtnText = document.createTextNode("Try Again?");
+    const newBtn = document.createElement('button');
+    const newBtnText = document.createTextNode('Try Again?');
     newBtn.appendChild(newBtnText);
     gameOver.appendChild(newBtn);
-    newBtn.className = "btn try-again";
+    newBtn.className = 'btn try-again';
     // TODO: attach an event listener to the try again button that resets the gameboard array/display
-    const tryAgain = document.querySelector(".try-again");
-    tryAgain.addEventListener("click", () => {
+    const tryAgain = document.querySelector('.try-again');
+    tryAgain.addEventListener('click', () => {
       resetGameboard();
     });
   }
@@ -183,13 +183,13 @@ const displayController = (() => {
     if (currentPlayer === playerOne.showMark()) {
       // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
-      playerData[0].classList.toggle("selected");
-      playerData[1].classList.toggle("selected");
+      playerData[0].classList.toggle('selected');
+      playerData[1].classList.toggle('selected');
     } else if (currentPlayer === playerTwo.showMark()) {
       // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
-      playerData[0].classList.toggle("selected");
-      playerData[1].classList.toggle("selected");
+      playerData[0].classList.toggle('selected');
+      playerData[1].classList.toggle('selected');
     }
   }
 
@@ -225,11 +225,11 @@ const displayController = (() => {
       let index1 = gameBoard.gameboard[winCondition[1]];
       let index2 = gameBoard.gameboard[winCondition[2]];
 
-      // console.log(winCondition);
-      // console.table(`1: ${index0}, 2: ${index1}, 3: ${index2}`);
+      console.log(winCondition);
+      console.table(`1: ${index0}, 2: ${index1}, 3: ${index2}`);
 
       // if values are blank do nothing
-      if (index0 === "" || index1 === "" || index2 === "") {
+      if (index0 === '' || index1 === '' || index2 === '') {
         return;
       }
       // check whether all 3 indexes match
