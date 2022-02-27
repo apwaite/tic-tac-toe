@@ -225,8 +225,8 @@ const displayController = (() => {
       let index1 = gameBoard.gameboard[winCondition[1]];
       let index2 = gameBoard.gameboard[winCondition[2]];
 
-      console.log(winCondition);
-      console.table(`1: ${index0}, 2: ${index1}, 3: ${index2}`);
+      // console.log(winCondition);
+      // console.table(`1: ${index0}, 2: ${index1}, 3: ${index2}`);
 
       // if values are blank do nothing
       if (index0 === '' || index1 === '' || index2 === '') {
