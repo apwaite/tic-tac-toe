@@ -149,12 +149,15 @@ const displayController = (() => {
     gameOver.style.display = 'flex';
     let result = isWinner ? `Player ${winningPlayer} Wins!` : `It's a Draw!`;
     gameOver.textContent = `Game Over! ${result}`;
+
     const newBtn = document.createElement('button');
+
     const newBtnText = document.createTextNode('Try Again?');
+
     newBtn.appendChild(newBtnText);
     gameOver.appendChild(newBtn);
     newBtn.className = 'btn try-again';
-    // TODO: attach an event listener to the try again button that resets the gameboard array/display
+
     const tryAgain = document.querySelector('.try-again');
     tryAgain.addEventListener('click', () => {
       resetGameboard();
@@ -165,14 +168,10 @@ const displayController = (() => {
     if (isDraw === true && isWinner === false) {
       instructions.textContent = `It's a draw!`;
       addOverlay();
-      // TODO: if winner is true display winner
     } else if (isDraw === false && isWinner === true) {
-      // NOTE: shows next player instead of current winner
       instructions.textContent = `Player ${winningPlayer} wins!`;
-      // TODO: create a function that adds an overlay with a button over the gameboard
       addOverlay();
     } else if (isDraw === true && isWinner === true) {
-      // TODO: add logic so that if both are true winner is announced
       addOverlay();
     } else {
       showPlayer();
@@ -181,12 +180,10 @@ const displayController = (() => {
 
   function showPlayer() {
     if (currentPlayer === playerOne.showMark()) {
-      // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
       playerData[0].classList.toggle('selected');
       playerData[1].classList.toggle('selected');
     } else if (currentPlayer === playerTwo.showMark()) {
-      // TODO: add text-decoration underline
       instructions.textContent = `Your move, ${currentPlayer}!`;
       playerData[0].classList.toggle('selected');
       playerData[1].classList.toggle('selected');
@@ -194,7 +191,6 @@ const displayController = (() => {
   }
 
   const checkForDraw = () => {
-    // TODO: add logic to check for a draw
     // first conditional should check whether 9 rounds have played - if this happens the game is automatically a draw
     if (round === 9) {
       return (isDraw = true);
