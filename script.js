@@ -85,8 +85,6 @@ const displayController = (() => {
   //   _logInfo();
   // }
 
-  // TODO: logic that determines whether a spot can be marked by a player
-
   function markPos() {
     document.querySelectorAll('.cell').forEach((item) => {
       item.addEventListener('click', (e) => {
@@ -122,7 +120,6 @@ const displayController = (() => {
     });
   }
 
-  // TODO: reset game back to default state
   function resetGameboard() {
     gameBoard.gameboard = ['', '', '', '', '', '', '', '', ''];
     round = 1;
@@ -137,7 +134,6 @@ const displayController = (() => {
     markPos();
   }
 
-  // TODO: enforce class selected on player x
   function resetPlayer() {
     if (playerData[1].classList.value === 'player-o selected') {
       playerData[1].classList.toggle('selected');
