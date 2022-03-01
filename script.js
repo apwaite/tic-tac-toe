@@ -195,7 +195,6 @@ const displayController = (() => {
   };
 
   const checkForWinner = () => {
-    // TODO: create array of win conditions
     const winConditions = [
       [0, 1, 2],
       [3, 4, 5],
