@@ -206,7 +206,6 @@ const displayController = (() => {
       [2, 4, 6],
     ];
 
-    // TODO: map through the winConditions array and check whether the elements of the gameboard array match
     winConditions.map((el, i) => {
       // map through the winConditions array and assign each winCondition with an index
       const winCondition = winConditions[i];
